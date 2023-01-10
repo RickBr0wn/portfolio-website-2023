@@ -1,6 +1,6 @@
 import { Container, Heading, Stack, Text, useColorMode } from '@chakra-ui/react'
 import { FC } from 'react'
-import ImageLoader from '../components/ImageLoader'
+
 
 type Props = {}
 
