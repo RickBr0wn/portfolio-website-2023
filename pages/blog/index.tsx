@@ -3,7 +3,14 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { getBlogPostData } from '../../lib/posts'
 import Date from '../../components/Date'
-import { Container, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import {
+	Container,
+	Flex,
+	Heading,
+	Stack,
+	Text,
+	useColorMode
+} from '@chakra-ui/react'
 
 type PostData = {
 	title: string
@@ -15,6 +22,7 @@ type PostData = {
 		url: string
 	}
 	slug: string
+	readTime: string
 }
 
 type Props = {
@@ -22,25 +30,37 @@ type Props = {
 }
 
 const BlogList: FC<Props> = ({ allPostsData }): JSX.Element => {
+	const { colorMode } = useColorMode()
+
 	return (
-		<Flex w={'100%'} mt={12}>
-			<Stack gap={12} width={'100%'}>
-				<Container as={'section'} maxW={'container.md'}>
-					{allPostsData.map(({ title, date, description, img, slug }) => (
-						<Link href={`/blog/${slug}`} key={slug}>
-							<a>
-								<Stack key={slug} mb={12}>
-									<Heading>{title}</Heading>
-									<Date dateString={date} />
-									<Text fontSize={'20px'} color={'lightgray'}>
-										{description}
-									</Text>
-								</Stack>
-							</a>
-						</Link>
-					))}
-				</Container>
-			</Stack>
+		<Flex w={'100%'} mt={12} flexDirection={'column'}>
+			{allPostsData.map(({ title, date, description, slug, readTime }) => (
+				<Link href={`/blog/${slug}`} key={slug}>
+					<a>
+						<Stack key={slug} mb={12}>
+							<Heading fontSize={'5xl'} fontWeight={'black'}>
+								{title}
+							</Heading>
+							<Flex justifyContent={'space-between'}>
+								<Date dateString={date} />
+								<Text
+									fontSize={'18px'}
+									color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
+									opacity={0.6}
+								>
+									{readTime}
+								</Text>
+							</Flex>
+							<Text
+								fontSize={'20px'}
+								color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
+							>
+								{description}
+							</Text>
+						</Stack>
+					</a>
+				</Link>
+			))}
 		</Flex>
 	)
 }

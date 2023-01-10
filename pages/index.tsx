@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 
 	return (
 		<main role='main'>
-			<Flex w={'100%'} justify={'space-evenly'} mt={36}>
+			<Flex w={'100%'} mt={36}>
 				<Stack justifyContent={'center'}>
 					<Heading fontSize={'68px'} mb={-6} fontWeight={'extrabold'}>
 						Hello, I&apos;m
@@ -22,11 +22,12 @@ const Home: NextPage = () => {
 						Rick Brown
 					</Heading>
 
-					<Text fontSize={'xl'} fontWeight={'bold'}>
-						💻 I am a web developer, living in the 🇬🇧 South East of England.
-					</Text>
-					<Text fontSize={'xl'} fontWeight={'bold'}>
-						I love 👨🏼‍🍳 cooking and 🎮 gaming, but never at the same time!
+					<Text
+						fontSize={'20px'}
+						color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
+					>
+						I am a web developer, living in the South East of England. I love
+						cooking and gaming, but never at the same time!
 					</Text>
 				</Stack>
 

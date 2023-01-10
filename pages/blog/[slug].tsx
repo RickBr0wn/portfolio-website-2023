@@ -4,10 +4,18 @@ import { FC, useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 import Date from '../../components/Date'
 import { getAllPostSlugs, getPostData } from '../../lib/posts'
-import { Box, Container, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import Image from 'next/image'
+import {
+	Box,
+	Container,
+	Flex,
+	Heading,
+	Stack,
+	Text,
+	useColorMode
+} from '@chakra-ui/react'
 import Link from 'next/link'
 import ImageLoader from '../../components/ImageLoader'
+import BackButton from '../../components/BackButton'
 
 type Frontmatter = {
 	title: string
@@ -18,6 +26,7 @@ type Frontmatter = {
 		name: string
 		url: string
 	}
+	readTime: string
 }
 
 type Props = {
@@ -25,64 +34,95 @@ type Props = {
 	frontmatter: Frontmatter
 }
 
-const components = {
-	h1: (props: any) => <Heading fontSize={'6xl'} mb={6} {...props} />,
-	h2: (props: any) => <Heading fontSize={'4xl'} mb={6} mt={10} {...props} />,
-	h3: (props: any) => <Heading fontSize={'4xl'} {...props} />,
-	h4: (props: any) => <Heading fontSize={'3xl'} {...props} />,
-	h5: (props: any) => <Heading fontSize={'2xl'} {...props} />,
-	h6: (props: any) => <Heading fontSize={'xl'} {...props} />,
-	p: (props: any) => (
-		<Text fontSize={'lg'} fontWeight={'light'} mb={6} {...props} />
-	),
-	i: (props: any) => <Text as={'i'} fontSize={'lg'} {...props} />,
-	strong: (props: any) => (
-		<Text as={'strong'} fontWeight={'extrabold'} fontSize={'xl'} {...props} />
-	),
-	img: (props: any) => (
-		<Box borderRadius={'2xl'} mb={12}>
-			<img {...props} alt={props.alt} />
-		</Box>
-	),
-	a: (props: any) => <Text as={'a'} color={'blue.300'} {...props} />,
-	ul: (props: any) => <Box as={'ul'} pl={8} mb={6} {...props} />,
-	ol: (props: any) => <Box as={'ol'} pl={8} mb={6} {...props} />,
-	li: (props: any) => <Text as={'li'} fontSize={'lg'} mb={2} {...props} />,
-	code: (props: any) => (
-		<Box
-			as={'code'}
-			mb={12}
-			fontSize={'lg'}
-			fontFamily={'mono'}
-			color={'gray.400'}
-			borderRadius={'md'}
-			{...props}
-		/>
-	),
-	blockquote: (props: any) => (
-		<Box
-			as={'blockquote'}
-			fontSize={'lg'}
-			fontFamily={'mono'}
-			color={'gray.200'}
-			borderRadius={'md'}
-			{...props}
-		/>
-	)
-}
-
 const BlogPost: FC<Props> = ({ code, frontmatter }): JSX.Element => {
 	const Component = useMemo(() => getMDXComponent(code), [code])
+	const { colorMode } = useColorMode()
+
+	const components = {
+		h1: (props: any) => <Heading fontSize={'6xl'} mb={6} {...props} />,
+		h2: (props: any) => <Heading fontSize={'4xl'} mb={6} mt={10} {...props} />,
+		h3: (props: any) => <Heading fontSize={'4xl'} {...props} />,
+		h4: (props: any) => <Heading fontSize={'3xl'} {...props} />,
+		h5: (props: any) => <Heading fontSize={'2xl'} {...props} />,
+		h6: (props: any) => <Heading fontSize={'xl'} {...props} />,
+		p: (props: any) => (
+			<Text fontSize={'lg'} fontWeight={'light'} mb={6} {...props} />
+		),
+		i: (props: any) => (
+			<Text as={'i'} fontSize={'lg'} fontWeight={'extrabold'} {...props} />
+		),
+		strong: (props: any) => (
+			<Text as={'strong'} fontWeight={'extrabold'} fontSize={'xl'} {...props} />
+		),
+		img: (props: any) => (
+			<Box borderRadius={'2xl'} mb={12}>
+				<img {...props} alt={props.alt} />
+			</Box>
+		),
+		a: (props: any) => (
+			<Text
+				as={'a'}
+				color={colorMode === 'dark' ? 'blue.300' : 'blue.900'}
+				fontWeight={'extrabold'}
+				textDecoration={'underline'}
+				{...props}
+			/>
+		),
+		ul: (props: any) => <Box as={'ul'} pl={8} mb={6} {...props} />,
+		ol: (props: any) => <Box as={'ol'} pl={8} {...props} />,
+		li: (props: any) => <Text as={'li'} fontSize={'lg'} {...props} />,
+		code: (props: any) => (
+			<Box
+				as={'code'}
+				mb={12}
+				fontSize={'lg'}
+				fontFamily={'mono'}
+				color={'gray.400'}
+				borderRadius={'md'}
+				{...props}
+			/>
+		),
+		blockquote: (props: any) => (
+			<Box
+				as={'blockquote'}
+				fontSize={'xs'}
+				fontFamily={'mono'}
+				color={colorMode === 'dark' ? 'gray.400' : 'gray.900'}
+				borderLeft={'4px solid'}
+				pl={6}
+				ml={2}
+				mb={10}
+				borderColor={colorMode === 'dark' ? 'gray.400' : 'gray.900'}
+				opacity={0.6}
+				{...props}
+			/>
+		)
+	}
 
 	return (
 		<Container as={'section'} maxW={'container.md'}>
 			<article itemScope itemType='http://schema.org/Article'>
-				<Stack as={'header'} marginY={12}>
+				<Stack as={'header'} mb={12}>
+					<BackButton />
 					<ImageLoader imgUrl={frontmatter.img} alt={'hero image'} />
-					<Heading as={'h1'} fontSize={'6xl'} mb={12} itemProp='headline'>
+					<Heading
+						as={'h1'}
+						fontSize={'6xl'}
+						fontWeight={'black'}
+						itemProp='headline'
+					>
 						{frontmatter.title}
 					</Heading>
-					<Date dateString={frontmatter.date} />
+					<Flex justifyContent={'space-between'}>
+						<Date dateString={frontmatter.date} />
+						<Text
+							fontSize={'18px'}
+							color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
+							opacity={0.6}
+						>
+							{frontmatter.readTime}
+						</Text>
+					</Flex>
 					<Flex alignItems={'flex-end'}>
 						<Text fontSize={'xs'} fontWeight={'light'} mr={1}>
 							Photo by
@@ -99,6 +139,7 @@ const BlogPost: FC<Props> = ({ code, frontmatter }): JSX.Element => {
 								fontWeight={'bold'}
 								color={'blue.300'}
 								mt={-10}
+								textDecoration={'underline'}
 							>
 								{frontmatter.credits.name}
 							</Text>
@@ -108,6 +149,7 @@ const BlogPost: FC<Props> = ({ code, frontmatter }): JSX.Element => {
 				<section itemProp='articleBody'>
 					<Component components={components} />
 				</section>
+				<BackButton />
 			</article>
 		</Container>
 	)

@@ -3,6 +3,12 @@ import matter from 'gray-matter'
 import path from 'path'
 import { bundleMDX } from 'mdx-bundler'
 import remarkGfm from 'remark-gfm'
+import mdxPrism from 'mdx-prism'
+import readingTime from 'reading-time'
+import rehypeSlug from 'rehype-slug'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypePrism from 'rehype-prism-plus'
 
 type Frontmatter = {
 	title: string
@@ -26,6 +32,7 @@ export const getAllPostSlugs = async () => {
 
 export const getBlogPostData = async () => {
 	const filenames = fs.readdirSync(postsDirectory)
+
 	const allPostsData = filenames.map(filename => {
 		const slug = filename.replace(/\.mdx$/, '')
 
@@ -36,6 +43,7 @@ export const getBlogPostData = async () => {
 
 		return {
 			slug,
+			readTime: readingTime(fileContents).text,
 			...(matterResult.data as Frontmatter)
 		}
 	})
@@ -56,9 +64,20 @@ export const getPostData = async (slug: string) => {
 		source: mdxSource,
 		mdxOptions(options) {
 			options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm]
+			options.rehypePlugins = [
+				...(options.rehypePlugins ?? []),
+				rehypeSlug,
+				rehypeCodeTitles,
+				rehypeAutolinkHeadings,
+				rehypePrism,
+				mdxPrism
+			]
+
 			return options
 		}
 	})
+
+	frontmatter.readTime = readingTime(mdxSource).text
 
 	return {
 		slug,
