@@ -34,6 +34,7 @@ const Home: NextPage = () => {
 					<Text
 						fontSize={'20px'}
 						color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
+						paddingBottom={12}
 					>
 						I am a web developer, living in the South East of England. I love
 						cooking and gaming, but never at the same time!
