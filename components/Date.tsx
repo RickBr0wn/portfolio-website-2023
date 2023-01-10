@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useColorMode } from '@chakra-ui/react'
 import { parseISO, format } from 'date-fns'
 import { FC } from 'react'
 
@@ -8,12 +8,13 @@ type Props = {
 
 const Date: FC<Props> = ({ dateString }) => {
 	const date = parseISO(dateString)
+	const { colorMode } = useColorMode()
 
 	return (
 		<Box
 			as={'time'}
 			fontSize={'18px'}
-			color={'lightgray'}
+			color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 			opacity={0.6}
 			dateTime={dateString}
 		>
