@@ -3,7 +3,7 @@ title: 'Webpack, React and Babel'
 date: '2018-10-01'
 description: 'Create-React-App is a tremendous product, and really does help ease the new developer into the React framework. But there comes that time in every developers'
 img: https://d2d4rtarj3og8s.cloudfront.net/hot-air-balloons
-credits: { url: 'https://unsplash.com/@aaronburden?utm_source=unsplash', name: 'Aaron Burden' }
+credits: { url: 'https://unsplash.com/@aaronburden', name: 'Aaron Burden' }
 ---
 
 Create-React-App is a tremendous product, and really does help ease the new developer into the React framework. But there comes that time in every developers journey to branch out and learn the inner workings of a React project. It's actually easier than you would imagine.
@@ -11,15 +11,10 @@ Create-React-App is a tremendous product, and really does help ease the new deve
 ## What you will learn
 
 - Installation and setup of webpack.
-
 - Installation and setup of babel.
-
 - Installation of React.
-
 - Bundling these files and presenting them in an HTML document.
-
 - Installation and setup of webpack-dev-server.
-
 - Installation and setup of loaders for things such as CSS files.
 
 I will also try to offer links to short videos explaining the basic concepts of each section.
@@ -52,7 +47,7 @@ yarn add -D webpack webpack-cli webpack-dev-server
 
 Replace the "scripts" inside Package.json with:
 
-```json
+```json:package.json
 "scripts": {
   "build": "webpack --mode production"
 },
@@ -86,7 +81,7 @@ Create a `.babelrc` file:
 touch .babelrc
 ```
 
-```json
+```json:.babelrc
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
@@ -98,7 +93,7 @@ Create a minimal `webpack.config.js` file:
 touch webpack.config.js
 ```
 
-```javascript
+```javascript:webpack.config.js
 module.exports = {
   module: {
     rules: [
@@ -136,7 +131,7 @@ mkdir components && cd components
 touch App.js
 ```
 
-```js
+```js:src/index.js
 // src/index.js
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -145,8 +140,7 @@ import App from './components/App'
 ReactDOM.render(<App />, document.getElementById('container'))
 ```
 
-```js
-// src/components/App.js
+```js:src/components/App.js
 import React from 'react'
 
 const App = () => <h1>Webpack, React & Babel</h1>
@@ -174,8 +168,7 @@ Install and configure the HTML webpack plugin:
 yarn add -D html-webpack-plugin html-loader
 ```
 
-```javascript
-// webpack.config.js
+```javascript:webpack.config.js
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -214,8 +207,7 @@ mkdir public && cd public
 touch index.html
 ```
 
-```html
-<!-- ./public/index.html -->
+```html:public/index.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -240,7 +232,7 @@ You will now see an `index.html` in your `dist` folder.
 
 Add this line to the `"scripts"` section in the `package.json` file:
 
-```json
+```json:package.json
 "start": "webpack-dev-server --config ./webpack.config.js --mode development",
 ```
 
@@ -260,8 +252,7 @@ If you now edit the code, you will see in the terminal that webpack rebuilds the
 
 If like me, you prefer `port 3000`, as per `create-react-app` specifications, and you find all that noise in the terminal off-putting, you can add this to the `webpack.config.js` file:
 
-```javascript
-// webpack.config.js
+```javascript:webpack.config.js
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -317,12 +308,10 @@ module.exports = {
 Add a CSS file in the `./src` directory:
 
 ```bash
-
 cd src && touch styles.css
 ```
 
-```css
-/* ./src/styles.css */
+```css:src/styles.css
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,400,500,700');
 
 \*,
@@ -355,8 +344,7 @@ Install new loaders to handle CSS files and urls:
 yarn add -D css-loader style-loader url-loader
 ```
 
-```javascript
-// webpack.config.js
+```javascript:webpack.config.js
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -422,9 +410,7 @@ module.exports = {
 Return to the root directory:
 
 ```bash
-
 yarn && yarn start
-
 ```
 
 Voila! You have a reusable webpack bundled, babel compiled, React project. Like all good developers, we are going to hoist it up to git hub. So we can re-use it countless times.
