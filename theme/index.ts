@@ -1,11 +1,15 @@
-import { extendTheme, StyleFunctionProps } from '@chakra-ui/react'
+import {
+	theme as chakraTheme,
+	extendTheme,
+	StyleFunctionProps
+} from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 import '@fontsource/inter'
 import '@fontsource/montserrat'
 
 const breakpoints = {
 	// define custom breakpoints
-	// sm: '30em',
+	// sm: '30em'
 	// md: '48em',
 	// lg: '62em',
 	// xl: '80em'
@@ -40,6 +44,19 @@ const fonts = {
 	// heading: `"Montserrat", sans-serif`
 }
 
+const fontSizes = {
+	xs: '12px',
+	sm: '14px',
+	md: '16px',
+	lg: '18px',
+	xl: '20px',
+	'2xl': '24px',
+	'3xl': '28px',
+	'4xl': '36px',
+	'5xl': '48px',
+	'6xl': '64px'
+}
+
 const styles = {
 	// add global styles
 	global: (props: StyleFunctionProps) => ({
@@ -52,7 +69,15 @@ const styles = {
 	})
 }
 
-const overrides = { breakpoints, colors, config, fonts, styles }
+const overrides = {
+	...chakraTheme,
+	breakpoints,
+	colors,
+	config,
+	fonts,
+	fontSizes,
+	styles
+}
 
 const theme = extendTheme(overrides)
 
