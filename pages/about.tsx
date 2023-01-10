@@ -1,7 +1,6 @@
 import { Container, Heading, Stack, Text, useColorMode } from '@chakra-ui/react'
 import { FC } from 'react'
 
-
 type Props = {}
 
 const About: FC<Props> = (): JSX.Element => {
