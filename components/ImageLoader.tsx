@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import Image from 'next/image'
 import { FC } from 'react'
 
@@ -20,28 +19,18 @@ export const ImageLoader: FC<Props> = ({
 	}
 
 	return (
-		<Box
-			sx={{
-				borderRadius: '10px',
-				overflow: 'hidden',
-				width: '100%',
-				height: 'auto'
+		<Image
+			src={imgUrl}
+			alt={alt}
+			layout={'responsive'}
+			width={width && height ? width : 1600}
+			height={width && height ? height : 900}
+			placeholder={'blur'}
+			blurDataURL={imgUrl}
+			style={{
+				borderRadius: '16px'
 			}}
-		>
-			<Image
-				src={imgUrl}
-				alt={alt}
-				layout={'responsive'}
-				width={width && height ? width : 1600}
-				height={width && height ? height : 900}
-				placeholder={'blur'}
-				blurDataURL={imgUrl}
-				// style={{
-				// 	maxWidth: '100%',
-				// 	height: 'auto'
-				// }}
-			/>
-		</Box>
+		/>
 	)
 }
 
