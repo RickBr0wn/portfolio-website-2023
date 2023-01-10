@@ -1,8 +1,33 @@
 import type { AppProps } from 'next/app'
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeScript, useColorMode } from '@chakra-ui/react'
 import theme from '../theme'
 import Layout from '../components/Layout'
 import Head from 'next/head'
+import { prismDarkTheme, prismLightTheme } from '../theme/prism'
+import { FC, ReactNode } from 'react'
+import { css, Global } from '@emotion/react'
+
+type Props = {
+	children: ReactNode
+}
+
+const GlobalStyle: FC<Props> = ({ children }) => {
+	const { colorMode } = useColorMode()
+
+	return (
+		<>
+			<Global
+				styles={css`
+					${colorMode === 'light' ? prismLightTheme : prismDarkTheme}
+					html {
+						scroll-behavior: smooth;
+					}
+				`}
+			/>
+			{children}
+		</>
+	)
+}
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	return (
@@ -36,7 +61,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 			<ChakraProvider theme={theme}>
 				<ColorModeScript initialColorMode={theme.config.initialColorMode} />
 				<Layout>
-					<Component {...pageProps} />
+					<GlobalStyle>
+						<Component {...pageProps} />
+					</GlobalStyle>
 				</Layout>
 			</ChakraProvider>
 		</>
