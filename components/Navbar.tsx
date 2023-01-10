@@ -15,7 +15,7 @@ const Navbar: FC = (): JSX.Element => {
 			<Link href={'/'}>
 				<a>
 					{/* <Button variant='ghost'> */}
-					<Heading fontSize={24} fontWeight={'black'}>
+					<Heading fontSize={{ base: 18, md: 22, lg: 24 }} fontWeight={'black'}>
 						Rick Brown
 					</Heading>
 					{/* </Button> */}
@@ -26,12 +26,16 @@ const Navbar: FC = (): JSX.Element => {
 			<Flex alignItems={'center'}>
 				<Link href={'/about'}>
 					<a>
-						<Button variant='ghost'>ABOUT</Button>
+						<Button variant='ghost' fontSize={{ base: 14, md: 16, lg: 18 }}>
+							ABOUT
+						</Button>
 					</a>
 				</Link>
 				<Link href={'/blog'}>
 					<a>
-						<Button variant='ghost'>BLOG</Button>
+						<Button variant='ghost' fontSize={{ base: 14, md: 16, lg: 18 }}>
+							BLOG
+						</Button>
 					</a>
 				</Link>
 				{/* <Link href={'/projects'}>
