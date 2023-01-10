@@ -14,9 +14,11 @@ const Navbar: FC = (): JSX.Element => {
 		>
 			<Link href={'/'}>
 				<a>
-					<Button variant='ghost'>
-						<Heading fontSize={24}>Rick Brown</Heading>
-					</Button>
+					{/* <Button variant='ghost'> */}
+					<Heading fontSize={24} fontWeight={'black'}>
+						Rick Brown
+					</Heading>
+					{/* </Button> */}
 				</a>
 			</Link>
 			<Spacer />
@@ -32,16 +34,16 @@ const Navbar: FC = (): JSX.Element => {
 						<Button variant='ghost'>BLOG</Button>
 					</a>
 				</Link>
-				<Link href={'/projects'}>
+				{/* <Link href={'/projects'}>
 					<a>
 						<Button variant='ghost'>PROJECTS</Button>
 					</a>
-				</Link>
-				<Link href={'/contact'}>
+				</Link> */}
+				{/* <Link href={'/contact'}>
 					<a>
 						<Button variant='ghost'>CONTACT</Button>
 					</a>
-				</Link>
+				</Link> */}
 				<ToggleLightDark />
 			</Flex>
 		</Flex>
