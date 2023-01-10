@@ -38,13 +38,16 @@ const BlogList: FC<Props> = ({ allPostsData }): JSX.Element => {
 				<Link href={`/blog/${slug}`} key={slug}>
 					<a>
 						<Stack key={slug} mb={12}>
-							<Heading fontSize={'5xl'} fontWeight={'black'}>
+							<Heading
+								fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
+								fontWeight={'black'}
+							>
 								{title}
 							</Heading>
 							<Flex justifyContent={'space-between'}>
 								<Date dateString={date} />
 								<Text
-									fontSize={'18px'}
+									fontSize={{ base: '14px', md: '16px', lg: '18px' }}
 									color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 									opacity={0.6}
 								>
@@ -52,7 +55,7 @@ const BlogList: FC<Props> = ({ allPostsData }): JSX.Element => {
 								</Text>
 							</Flex>
 							<Text
-								fontSize={'20px'}
+								fontSize={{ base: '16px', md: '18px', lg: '20px' }}
 								color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 							>
 								{description}

@@ -12,7 +12,7 @@ const Layout: FC<Props> = ({ children }): JSX.Element => {
 			h={'100vh'}
 			w={'100vw'}
 			flexDirection={'column'}
-			paddingX={{ base: 0, md: 4, lg: 8 }}
+			// paddingX={{ base: 0, md: 4, lg: 8 }}
 			// bg={{
 			// 	sm: 'yellow.600',
 			// 	base: 'blue.600',
@@ -21,7 +21,9 @@ const Layout: FC<Props> = ({ children }): JSX.Element => {
 			// }}
 		>
 			<Navbar /> {/* This navbar is 80px tall */}
-			<Container maxW={'container.md'}>{children}</Container>
+			<Container paddingX={{ base: 4, md: 6, lg: 8 }} maxW={'container.md'}>
+				{children}
+			</Container>
 		</Flex>
 	)
 }

@@ -11,7 +11,7 @@ const BackButton: FC<Props> = (): JSX.Element => {
 			<Link href={'/blog'}>
 				<Flex alignItems={'center'}>
 					<BsArrowLeft />
-					<Text ml={2}>
+					<Text ml={2} fontSize={{ base: '14px', md: '16px', lg: '18px' }}>
 						<a>back</a>
 					</Text>
 				</Flex>

@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 					</Heading>
 
 					<Text
-						fontSize={{ base: '16px', md: '19px', lg: '20px' }}
+						fontSize={{ base: '16px', md: '18px', lg: '20px' }}
 						color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 						paddingBottom={12}
 					>

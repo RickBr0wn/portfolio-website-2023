@@ -1,6 +1,7 @@
 import { Container, Heading, Stack, Text, useColorMode } from '@chakra-ui/react'
 import { FC } from 'react'
 
+
 type Props = {}
 
 const About: FC<Props> = (): JSX.Element => {
@@ -9,12 +10,12 @@ const About: FC<Props> = (): JSX.Element => {
 	return (
 		<Container as={'section'} maxW={'container.md'} h={'100%'}>
 			<Stack mt={12}>
-				<Heading fontSize={'6xl'} mb={2}>
+				<Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} mb={2}>
 					About Me
 				</Heading>
 
 				<Text
-					fontSize={'20px'}
+					fontSize={{ base: '16px', md: '18px', lg: '20px' }}
 					color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 				>
 					My name is Rick Brown and I am a self-taught web developer. I have
@@ -22,7 +23,7 @@ const About: FC<Props> = (): JSX.Element => {
 					to teach myself how to code.
 				</Text>
 				<Text
-					fontSize={'20px'}
+					fontSize={{ base: '16px', md: '18px', lg: '20px' }}
 					color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 				>
 					After many hours of hard work and dedication, I am now comfortable in
@@ -33,7 +34,7 @@ const About: FC<Props> = (): JSX.Element => {
 					first job in the tech industry.
 				</Text>
 				<Text
-					fontSize={'20px'}
+					fontSize={{ base: '16px', md: '18px', lg: '20px' }}
 					color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 				>
 					I am a quick learner and a team player, with a strong work ethic and a
@@ -42,7 +43,7 @@ const About: FC<Props> = (): JSX.Element => {
 					to learn and grow as a developer.
 				</Text>
 				<Text
-					fontSize={'20px'}
+					fontSize={{ base: '16px', md: '18px', lg: '20px' }}
 					color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 				>
 					Thank you for taking the time to visit my blog/website. I hope you

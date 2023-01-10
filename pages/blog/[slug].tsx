@@ -100,14 +100,18 @@ const BlogPost: FC<Props> = ({ code, frontmatter }): JSX.Element => {
 	}
 
 	return (
-		<Container as={'section'} maxW={'container.md'}>
+		<Container
+			paddingX={{ base: 0, md: 4, lg: 8 }}
+			as={'section'}
+			maxW={'container.md'}
+		>
 			<article itemScope itemType='http://schema.org/Article'>
 				<Stack as={'header'} mb={12}>
 					<BackButton />
 					<ImageLoader imgUrl={frontmatter.img} alt={'hero image'} />
 					<Heading
 						as={'h1'}
-						fontSize={'6xl'}
+						fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
 						fontWeight={'black'}
 						itemProp='headline'
 					>
@@ -116,7 +120,7 @@ const BlogPost: FC<Props> = ({ code, frontmatter }): JSX.Element => {
 					<Flex justifyContent={'space-between'}>
 						<Date dateString={frontmatter.date} />
 						<Text
-							fontSize={'18px'}
+							fontSize={{ base: '14px', md: '16px', lg: '18px' }}
 							color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 							opacity={0.6}
 						>

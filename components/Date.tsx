@@ -13,7 +13,7 @@ const Date: FC<Props> = ({ dateString }) => {
 	return (
 		<Box
 			as={'time'}
-			fontSize={'18px'}
+			fontSize={{ base: '14px', md: '16px', lg: '18px' }}
 			color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 			opacity={0.6}
 			dateTime={dateString}
