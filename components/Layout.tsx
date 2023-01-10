@@ -14,6 +14,8 @@ const Layout: FC<Props> = ({ children }): JSX.Element => {
 			flexDirection={'column'}
 			paddingX={{ base: 0, md: 4, lg: 8 }}
 			bg={{
+				sm: 'yellow.600',
+				base: 'blue.600',
 				md: 'red.600',
 				lg: 'green.600'
 			}}

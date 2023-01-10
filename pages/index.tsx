@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 					<Heading
 						bgGradient='linear(to-l, gradient.start, gradient.end)'
 						bgClip='text'
-						fontSize={{ base: '56px', md: '74px', lg: '88px' }}
+						fontSize={{ base: '46px', md: '74px', lg: '88px' }}
 						fontWeight={'extrabold'}
 						ml={4}
 					>
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 					</Heading>
 
 					<Text
-						fontSize={'20px'}
+						fontSize={{ base: '16px', md: '19px', lg: '20px' }}
 						color={colorMode === 'dark' ? 'lightgray' : 'gray.700'}
 						paddingBottom={12}
 					>
