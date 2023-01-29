@@ -111,7 +111,7 @@ const BlogPost: FC<Props> = ({ code, frontmatter }): JSX.Element => {
 					<ImageLoader imgUrl={frontmatter.img} alt={'hero image'} />
 					<Heading
 						as={'h1'}
-						fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
+						fontSize={{ base: '3xl', md: '5xl', lg: '6xl' }}
 						fontWeight={'black'}
 						itemProp='headline'
 					>
